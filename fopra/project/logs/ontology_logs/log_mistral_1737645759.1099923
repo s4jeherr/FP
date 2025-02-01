@@ -1,0 +1,56 @@
+ {
+      "operationDetails": {
+         "operationID": "AhrValleyDisasterRelief2021",
+         "operationName": "Deployment as part of the Ahr Valley disaster relief",
+         "disasterType": "flood",
+         "datetime": "2021-07-18T10:00:00",
+         "duration": null,
+         "location": "Oppenheim / SCHULD"
+      },
+      "resources": [
+         "fire engine",
+         "emergency power supply equipment",
+         "vehicle recovery equipment"
+      ],
+      "tasks": [
+         {
+            "name": "Ensuring basic protection",
+            "description": null,
+            "startTime": "2021-07-18T10:00:00",
+            "endTime": null,
+            "location": "Schuld"
+         },
+         {
+            "name": "Laying an emergency power supply",
+            "description": null,
+            "startTime": "2021-07-18T10:00:00",
+            "endTime": null,
+            "location": "Schuld"
+         },
+         {
+            "name": "Vehicle recovery from the Ahr",
+            "description": null,
+            "startTime": "2021-07-18T10:00:00",
+            "endTime": null,
+            "location": "Schuld"
+         },
+         {
+            "name": "Shuttle service to fill water tanks in more remote locations",
+            "description": null,
+            "startTime": "2021-07-18T10:00:00",
+            "endTime": null,
+            "location": "Remote locations"
+         }
+      ],
+      "observations": {
+         "challenges": [],
+         "successes": [
+            "Successful provision of basic protection and emergency power supply.",
+            "Successful recovery of vehicles from the Ahr."
+            "Successfully provided shuttle service to fill water tanks in remote locations."
+         ]
+      },
+      "externalSupport": {
+         "agencies": []
+      }
+   }

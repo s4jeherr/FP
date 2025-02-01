@@ -1,0 +1,59 @@
+```json
+{
+  "operationDetails": {
+    "operationID": "OP-AHRV-2021-07-18",
+    "operationName": "Ahr Valley Disaster Relief",
+    "disasterType": "Flood",
+    "datetime": "2021-07-18T10:00:00",
+    "duration": null,
+    "location": "Oppenheim / Schuld"
+  },
+  "resources": [
+    "Fire Engine",
+    "Emergency Power Supply Equipment",
+    "Vehicles for Recovery"
+  ],
+  "tasks": [
+    {
+      "name": "Ensuring Basic Protection",
+      "description": null,
+      "startTime": "2021-07-18T10:00:00",
+      "endTime": "2021-07-18T23:59:59",
+      "location": "Schuld"
+    },
+    {
+      "name": "Laying Emergency Power Supply",
+      "description": null,
+      "startTime": "2021-07-18T10:00:00",
+      "endTime": "2021-07-18T23:59:59",
+      "location": "Schuld"
+    },
+    {
+      "name": "Vehicle Recovery",
+      "description": null,
+      "startTime": "2021-07-18T10:00:00",
+      "endTime": "2021-07-18T23:59:59",
+      "location": "Ahr"
+    },
+    {
+      "name": "Shuttle Service for Filling Water Tanks",
+      "description": null,
+      "startTime": "2021-07-18T10:00:00",
+      "endTime": "2021-07-18T23:59:59",
+      "location": "Remote Locations"
+    }
+  ],
+  "observations": {
+    "challenges": [],
+    "successes": [
+      "Helping to Ensure Basic Protection",
+      "Laying an Emergency Power Supply",
+      "Recovering Vehicles from the Ahr",
+      "Participating in the Shuttle Service for Filling Water Tanks"
+    ]
+  },
+  "externalSupport": {
+    "agencies": []
+  }
+}
+```

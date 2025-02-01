@@ -1,0 +1,8 @@
+python-dotenv==1.0.0
+requests==2.31.0
+beautifulsoup4==4.12.2
+anthropic==0.3.11
+neo4j==5.15.0
+paramiko==3.4.0
+ollama==0.1.6
+pydantic==2.6.1

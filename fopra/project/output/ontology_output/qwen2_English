@@ -1,0 +1,100 @@
+Ontology for Fire Department Operational Reports:
+
+```json
+{
+  "DisasterReport": {
+    "description": "A report created by a fire department during disaster operations.",
+    "properties": {
+      "missionNumber": {
+        "type": "string",
+        "description": "Unique identifier of the mission."
+      },
+      "dateTime": {
+        "type": "datetime",
+        "description": "Date and time when the report was created."
+      },
+      "location": {
+        "type": "string",
+        "description": "Geographical location where disaster occurred."
+      },
+      "disasterType": {
+        "type": "enum",
+        "values": ["Flood", "Earthquake", "Tsunami", "Wildfire"],
+        "description": "Type of natural disaster that caused the report."
+      },
+      "unitsInvolved": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        },
+        "description": "List of fire departments and rescue services involved in the operation."
+      }
+    }
+  },
+
+  "MissionReport": {
+    "description": "A detailed report about specific mission during disaster.",
+    "properties": {
+      "unitsInvolvedDescription": {
+        "type": "string",
+        "description": "Descriptive information on which units were involved in this specific mission."
+      },
+      "operationsFocus": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        },
+        "description": "List of tasks and operations focused during the mission."
+      }
+    }
+  },
+
+  "CatastropheControlUnit": {
+    "description": "The fire chief or other designated official in charge of managing disaster response.",
+    "properties": {
+      "role": {
+        "type": "string",
+        "description": "Role or title of the catastrophe control unit member."
+      },
+      "department": {
+        "type": "string",
+        "description": "Fire department that the unit represents."
+      }
+    }
+  },
+
+  "SuppliesAndAid": {
+    "description": "Information on supplying residents and organizing aid delivery during disaster.",
+    "properties": {
+      "distributionMethod": {
+        "type": "string",
+        "description": "Method used to distribute supplies to affected areas."
+      },
+      "aidOrganizers": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        },
+        "description": "List of organizations involved in aid delivery coordination."
+      }
+    }
+  },
+
+  "AerialPhotographyAndVideoDocumentation": {
+    "description": "Documents capturing aerial view and footage of disaster situation.",
+    "properties": {
+      "sources": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of media or news organizations that provided the documentation."
+      }
+    }
+  }
+}
+```
+
+Each disaster report can contain multiple mission reports, catastrophe control units and supplies/aid information. The aerial photography and video documentation link provides additional context to understand the situation on ground.
+
+This ontology structure would enable easy extraction of relevant data points from operational reports for analysis or further processing in disaster management systems.

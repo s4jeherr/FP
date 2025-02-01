@@ -1,0 +1,118 @@
+{
+  "name": "FireDepartmentOperationalReports",
+  "type": "object",
+  "properties": {
+    "operationDetails": {
+      "type": "object",
+      "properties": {
+        "operationID": { "type": "string", "description": "Unique identifier for the operation" },
+        "operationName": { "type": "string", "description": "Name or title of the operation" },
+        "disasterType": {
+          "type": "string",
+          "enum": ["Flood", "Fire", "Earthquake", "Landslide", "Other"],
+          "description": "Type of disaster"
+        },
+        "location": { "type": "string", "description": "Geographical location of the operation" },
+        "dateTime": { "type": "string", "format": "date-time", "description": "Date and time of operation start" },
+        "duration": { "type": "string", "description": "Duration of the operation" }
+      },
+      "required": ["operationID", "operationName", "disasterType", "location", "dateTime"]
+    },
+    "resources": {
+      "type": "object",
+      "properties": {
+        "vehicles": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Vehicles deployed in the operation"
+        },
+        "equipment": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Equipment used during the operation"
+        },
+        "personnel": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": { "type": "string", "description": "Role of the personnel (e.g., firefighter, medic)" },
+              "count": { "type": "integer", "description": "Number of personnel in this role" }
+            }
+          },
+          "description": "Personnel deployed, categorized by roles"
+        }
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "taskName": { "type": "string", "description": "Name of the task (e.g., water pumping, fire suppression)" },
+          "description": { "type": "string", "description": "Detailed description of the task" },
+          "location": { "type": "string", "description": "Specific location where the task occurred" },
+          "startTime": { "type": "string", "format": "date-time", "description": "Start time of the task" },
+          "endTime": { "type": "string", "format": "date-time", "description": "End time of the task" }
+        },
+        "required": ["taskName", "description", "location"]
+      },
+      "description": "Tasks undertaken during the operation"
+    },
+    "observations": {
+      "type": "object",
+      "properties": {
+        "damageAssessment": {
+          "type": "object",
+          "properties": {
+            "infrastructure": { "type": "string", "description": "Extent of damage to infrastructure" },
+            "casualties": {
+              "type": "object",
+              "properties": {
+                "fatalities": { "type": "integer", "description": "Number of fatalities" },
+                "injuries": { "type": "integer", "description": "Number of injuries" },
+                "missing": { "type": "integer", "description": "Number of missing individuals" }
+              }
+            }
+          }
+        },
+        "communityResponse": {
+          "type": "object",
+          "properties": {
+            "reception": { "type": "string", "description": "Reception and feedback from the local community" },
+            "selfOrganization": { "type": "string", "description": "Efforts of the local community in relief and rescue" }
+          }
+        },
+        "challenges": {
+          "type": "array",
+          "items": { "type": "string", "description": "Challenges encountered during the operation" }
+        },
+        "successes": {
+          "type": "array",
+          "items": { "type": "string", "description": "Notable successes achieved during the operation" }
+        }
+      }
+    },
+    "externalSupport": {
+      "type": "object",
+      "properties": {
+        "agencies": {
+          "type": "array",
+          "items": { "type": "string", "description": "External agencies involved (e.g., THW, Bundeswehr)" }
+        },
+        "coordination": {
+          "type": "string",
+          "description": "Details of coordination with other agencies"
+        }
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Recommendations or lessons learned for future operations"
+      }
+    }
+  },
+  "required": ["operationDetails", "resources", "tasks", "observations"]
+}

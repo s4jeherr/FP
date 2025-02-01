@@ -1,0 +1,62 @@
+ ```
+{
+    "operationDetails": {
+        "operationID": "AhrValleyDisasterRelief1",
+        "operationName": "Ahr Valley Disaster Relief",
+        "disasterType": "flood",
+        "datetime": "2021-07-18T10:00:00",
+        "duration": null,
+        "location": "Oppenheim / Schuld"
+    },
+    "resources": [
+        "fire engine",
+        "emergency power supply equipment",
+        "vehicles for shuttle service"
+    ],
+    "tasks": [
+        {
+            "name": "Basic protection",
+            "description": null,
+            "startTime": null,
+            "endTime": null,
+            "location": "Schuld"
+        },
+        {
+            "name": "Vehicle recovery from the Ahr",
+            "description": null,
+            "startTime": null,
+            "endTime": null,
+            "location": "Schuld"
+        },
+        {
+            "name": "Emergency power supply laying",
+            "description": null,
+            "startTime": null,
+            "endTime": null,
+            "location": "Schuld"
+        },
+        {
+            "name": "Shuttle service for water tank filling",
+            "description": null,
+            "startTime": null,
+            "endTime": null,
+            "location": "Remote locations"
+        }
+    ],
+    "observations": {
+        "challenges": [],
+        "successes": [
+            "Helping with basic protection",
+            "Recovery of vehicles from the Ahr",
+            "Laying of an emergency power supply",
+            "Participation in shuttle service for water tank filling"
+        ]
+    },
+    "externalSupport": {
+        "agencies": [
+            "Rhein-Selz district",
+            "Mainz-Bingen district"
+        ]
+    }
+}
+```

@@ -1,0 +1,41 @@
+Analyze the provided report and summarize it as a JSON file that strictly adheres to the following schema:
+
+{
+  "operationDetails": {
+    "operationID": "string (unique identifier)",
+    "operationName": "string (name of operation)",
+    "disasterType": "string (type of disaster)",
+    "dateTime": "string (ISO 8601 format)",
+    "duration": "number (hours, optional)",
+    "location": "string (location of operation)"
+  },
+  "resources": [
+    "string (list of resources used)"
+  ],
+  "tasks": [
+    {
+      "name": "string (task name)",
+      "description": "string (optional)",
+      "startTime": "string (ISO 8601, optional)",
+      "endTime": "string (ISO 8601, optional)",
+      "location": "string (task location)"
+    }
+  ],
+  "observations": {
+    "challenges": [
+      "string (list of challenges)"
+    ],
+    "successes": [
+      "string (list of successes)"
+    ]
+  },
+  "externalSupport": {
+    "agencies": [
+      "string (list of supporting agencies)"
+    ]
+  }
+}
+
+Your task is to return only a JSON file that adheres to this schema. Ensure all date and time fields follow the ISO 8601 format (e.g., 2023-01-23T10:15:30). Do not include any additional text or explanation in the output.
+Report:
+
