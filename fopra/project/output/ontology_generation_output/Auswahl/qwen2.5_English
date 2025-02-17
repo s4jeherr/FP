@@ -1,0 +1,162 @@
+### Ontology for Fire Department Operational Reports
+
+#### 1. **Entity Types**
+   - **Report**: The main entity that captures the operational details.
+     - **Attributes**:
+       - `report_id` (Unique Identifier)
+       - `mission_number`
+       - `date/time`
+       - `location`
+       - `type_of_alarm`
+       - `duration_of_operation`
+
+   - **Unit**: Represents a participating unit in the operation.
+     - **Attributes**:
+       - `unit_id` (Unique Identifier)
+       - `name`
+       - `type` (`Fire Brigade`, `Rescue Team`, etc.)
+
+   - **Person**: An individual involved in the report, such as a firefighter or official.
+     - **Attributes**:
+       - `person_id` (Unique Identifier)
+       - `name`
+       - `role` (`Commander`, `Rescuer`, etc.)
+
+   - **Location**: Specific area of operation.
+     - **Attributes**:
+       - `location_name`
+       - `coordinates`
+
+   - **Event**: A specific incident or action during the operation.
+     - **Attributes**:
+       - `event_id` (Unique Identifier)
+       - `description`
+       - `start_time`
+       - `end_time`
+
+#### 2. **Relationships**
+   - **ParticipatedIn**: Connects a report to its participating units and persons.
+     - **Example**:
+       ```plaintext
+       Report: "015/2021" participated in by Unit: "LE 03", Person: "Commander Thomas Nelles"
+       ```
+
+   - **OccurredAt**: Links an event or incident to a specific location.
+     - **Example**:
+       ```plaintext
+       Event: "Rech was reached by firefighters from Vettelschoß and St. Katharinen" occurred at Location: "Rech, Ahr Valley"
+       ```
+
+#### 3. **Hierarchical Relationships**
+   - **Deployment**: Indicates the deployment of a unit or person to an operation.
+     - **Example**:
+       ```plaintext
+       Unit: "LE 03" deployed in Operation: "Flooding in the Ahr Valley"
+       Person: "Thomas Nelles" deployed as Commander in Operation: "Flooding in the Ahr Valley"
+       ```
+
+#### 4. **Event Types**
+   - **Supply**: Relates to the provision of resources or aid.
+     - **Example**:
+       ```plaintext
+       Event: "Pumped out cellars and cleared buildings in Rech" is a supply event.
+       ```
+
+   - **Reconnaissance**: Involves initial exploration or assessment of an area.
+     - **Example**:
+       ```plaintext
+       Event: "Initial reconnaissance to assess accessibility via forest paths" is a reconnaissance event.
+       ```
+
+   - **Rescue**: Includes actions taken to save individuals from danger.
+     - **Example**:
+       ```plaintext
+       Event: "Rescuing a person requiring medication" is a rescue event.
+       ```
+
+#### 5. **Attributes for Entities**
+   - **Report Attributes**:
+     - `report_id`
+     - `mission_number` (String)
+     - `date/time` (DateTime)
+     - `location` (Geographical Location)
+     - `type_of_alarm` (String, e.g., "Agreement", "FME")
+     - `duration_of_operation` (Duration)
+
+   - **Unit Attributes**:
+     - `unit_id`
+     - `name` (String)
+     - `type` (String, enumeration: Fire Brigade, Rescue Team, Police, etc.)
+
+   - **Person Attributes**:
+     - `person_id`
+     - `name` (String)
+     - `role` (String, e.g., Commander, Rescuer)
+
+   - **Location Attributes**:
+     - `location_name` (String)
+     - `coordinates` (Geographical Coordinates)
+
+   - **Event Attributes**:
+     - `event_id`
+     - `description` (Text)
+     - `start_time` (DateTime)
+     - `end_time` (DateTime)
+
+### Example Scenario: Rech, Ahr Valley
+
+```plaintext
+Report ID: 015/2021
+Mission Number: 015/2021
+Date/Time: July 16, 2021 at 6:30 a.m.
+Location: Rech, Ahr Valley
+Type of Alarm: Agreement, FME
+Duration of Operation: 10 hours 30 minutes
+
+ParticipatedIn:
+- Unit: "LE 03" (Vettelschoß)
+- Person: "Commander Thomas Nelles"
+
+Events:
+- Event ID: 001
+  - Description: Passage under the railway line was impassable due to trees and branches.
+  - Start Time: July 16, 2021 at 7:00 a.m.
+  - End Time: July 16, 2021 at 9:30 a.m.
+
+- Event ID: 002
+  - Description: Initial reconnaissance to assess accessibility via forest paths.
+  - Start Time: July 16, 2021 at 9:30 a.m.
+  - End Time: July 16, 2021 at 11:00 a.m.
+
+- Event ID: 003
+  - Description: Pumped out cellars and cleared buildings in Rech.
+  - Start Time: July 16, 2021 at 11:00 a.m.
+  - End Time: July 16, 2021 at 5:30 p.m.
+
+- Event ID: 004
+  - Description: Rescuing a person requiring medication in Rech.
+  - Start Time: July 16, 2021 at 7:30 p.m.
+  - End Time: July 16, 2021 at 8:00 p.m.
+```
+
+### Data Modeling Diagram
+```plaintext
++-----------------+      +------------------+       +--------------------+
+|     Report      |<---->|     Unit          |<----->|    Person           |
++-----------------+      +------------------+       +--------------------+
+| report_id       |      | unit_id          |       | person_id          |
+| mission_number  |      | name             |       | name               |
+| date/time       |<---->| type             |<------>| role               |
+| location        |      |                  |       |                   |
+| type_of_alarm   |      |                  |       +--------------------+
+| duration_of_op. |      +------------------+       |    Location         |
++-----------------+                           +--------------------+
+                                            | location_name
+                                            | coordinates
+```
+
+This model can be further expanded and optimized based on specific requirements and additional data fields. The relationships between entities allow for a structured representation of the operational events, making it easier to analyze and manage emergency response operations. 
+
+--- 
+
+**Note:** This is a simplified version and can be extended with more detailed attributes and relationships as needed. For database implementation, refer to appropriate ORM (Object-Relational Mapping) frameworks or SQL schema design tools.

@@ -1,6 +1,5 @@
 from neo4j import GraphDatabase
 import logging
-from models.report import Report, ExtendedReport
 from config.database_config import DATABASE
 from datetime import datetime
 
@@ -50,58 +49,31 @@ class Neo4jService:
             raise
 
     def store_report(self, report):
-        """Store a fire department report in Neo4j"""
-        if isinstance(report, Report):
-            # Convert legacy Report to ExtendedReport format
-            operation_data = {
-                "operationID": str(hash(f"{report.datum}_{report.ort}_{report.einsatzart}")),
-                "operationName": report.einsatzart,
-                "disasterType": report.einsatzart,
-                "location": report.ort,
-                "dateTime": report.datum.isoformat(),
-                "duration": report.dauer,
-                "resources": report.beteiligte,
-                "tasks": [{
-                    "name": "Haupteinsatz",
-                    "description": report.verlauf,
-                    "location": report.ort,
-                    "startTime": report.datum.isoformat(),
-                    "endTime": None
-                }],
-                "observations": {
-                    "challenges": [],
-                    "successes": []
-                },
-                "externalSupport": {
-                    "agencies": report.beteiligte
+        """Store an emergency operation report in Neo4j"""
+        operation_data = {
+            "operationID": report.operationDetails.operationID,
+            "operationName": report.operationDetails.operationName,
+            "disasterType": report.operationDetails.disasterType,
+            "location": report.operationDetails.location,
+            "dateTime": report.operationDetails.dateTime,  # Already a string
+            "duration": report.operationDetails.duration,
+            "resources": report.resources,
+            "tasks": [
+                {
+                    "name": task.name,
+                    "description": task.description,
+                    "startTime": task.startTime,  # Already a string
+                    "endTime": task.endTime,  # Already a string
+                    "location": task.location if task.location else None,
                 }
-            }
-        else:
-            # Handle ExtendedReport format
-            operation_data = {
-                "operationID": report.operationDetails.operationID,
-                "operationName": report.operationDetails.operationName,
-                "disasterType": report.operationDetails.disasterType,
-                "location": report.operationDetails.location,
-                "dateTime": report.operationDetails.dateTime.isoformat(),
-                "duration": report.operationDetails.duration,
-                "resources": report.resources,
-                "tasks": [
-                    {
-                        "name": task.name,
-                        "description": task.description,
-                        "startTime": task.startTime.isoformat() if task.startTime else None,
-                        "endTime": task.endTime.isoformat() if task.endTime else None,
-                        "location": task.location,
-                    }
-                    for task in report.tasks
-                ],
-                "observations": {
-                    "challenges": report.observations.challenges,
-                    "successes": report.observations.successes,
-                },
-                "externalSupport": {"agencies": report.externalSupport.agencies}
-            }
+                for task in report.tasks
+            ],
+            "observations": {
+                "challenges": report.observations.challenges,
+                "successes": report.observations.successes,
+            },
+            "externalSupport": {"agencies": report.externalSupport.agencies}
+        }
 
         query = """
         MERGE (o:Operation {id: $operationID})
@@ -113,32 +85,39 @@ class Neo4jService:
         MERGE (o)-[:LOCATED_AT]->(l)
 
         WITH o
-        UNWIND $resources AS resource
+        UNWIND CASE WHEN size($resources) > 0 THEN $resources ELSE [null] END AS resource
+        WITH o, resource WHERE resource IS NOT NULL
         MERGE (r:Resource {name: resource})
         MERGE (o)-[:USES]->(r)
 
         WITH o
-        UNWIND $tasks AS task
-        MERGE (t:Task {name: task.name})
+        UNWIND CASE WHEN size($tasks) > 0 THEN $tasks ELSE [null] END AS task
+        WITH o, task WHERE task IS NOT NULL
+        MERGE (t:Task {name: task.name, operationID: $operationID})  // Uniqueness per operation
         SET t.description = task.description,
             t.startTime = task.startTime,
             t.endTime = task.endTime
-        MERGE (loc:Location {name: task.location})
-        MERGE (t)-[:LOCATED_AT]->(loc)
+        FOREACH (_ IN CASE WHEN task.location IS NOT NULL THEN [1] ELSE [] END |
+            MERGE (loc:Location {name: task.location})
+            MERGE (t)-[:LOCATED_AT]->(loc)
+        )
         MERGE (o)-[:INCLUDES_TASK]->(t)
 
         WITH o
-        UNWIND $observations.challenges AS challenge
+        UNWIND CASE WHEN size($observations.challenges) > 0 THEN $observations.challenges ELSE [null] END AS challenge
+        WITH o, challenge WHERE challenge IS NOT NULL
         MERGE (c:Challenge {description: challenge})
         MERGE (o)-[:FACED]->(c)
 
         WITH o
-        UNWIND $observations.successes AS success
+        UNWIND CASE WHEN size($observations.successes) > 0 THEN $observations.successes ELSE [null] END AS success
+        WITH o, success WHERE success IS NOT NULL
         MERGE (s:Success {description: success})
         MERGE (o)-[:ACHIEVED]->(s)
 
         WITH o
-        UNWIND $externalSupport.agencies AS agency
+        UNWIND CASE WHEN size($externalSupport.agencies) > 0 THEN $externalSupport.agencies ELSE [null] END AS agency
+        WITH o, agency WHERE agency IS NOT NULL
         MERGE (a:Agency {name: agency})
         MERGE (o)-[:SUPPORTED_BY]->(a)
         """
@@ -150,6 +129,7 @@ class Neo4jService:
         except Exception as e:
             self.logger.error(f"Failed to store report: {str(e)}")
             raise
+
 
     def query_all_operations(self):
         """Query and return all operations stored in the database"""

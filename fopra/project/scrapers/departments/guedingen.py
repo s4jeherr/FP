@@ -1,88 +1,57 @@
 from datetime import datetime
 from typing import List
-from basescraper import BaseScraper
-from models.report import Report
+from .basescraper import BaseScraper
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+from newspaper import Article
+import logging
 
 class GuedingenScraper(BaseScraper):
     """Scraper for Güdingen fire department"""
 
     def __init__(self):
         super().__init__()
-        self.base_url = "https://www.feuerwehr-guedingen.de"
-        self.archive_pattern = "/einsatzuebersicht-{year}/"
+        self.logger = logging.getLogger(__name__)
 
-    def scrape(self) -> List[Report]:
-        reports = []
-        current_year = datetime.now().year
+    def scrape(self):
+        years = list(range(2023, 2024))
+        base_url = "https://www.feuerwehr-guedingen.de/einsatzuebersicht-"
 
-        # Scrape from 2019 to current year
-        for year in range(2019, current_year + 1):
-            try:
-                url = f"{self.base_url}{self.archive_pattern.format(year=year)}"
-                self.logger.info(f"Scraping: {url}")
+        d = {"ReportText": []}
+        df = pd.DataFrame(data=d)
 
-                soup = self.get_soup(url)
+        for year in years:
+            url = f"{base_url}{year}/"
+            response = requests.get(url)
 
-                # Find all report containers
-                report_containers = soup.find_all('article', class_='einsatz-bericht')
-
-                for container in report_containers:
-                    try:
-                        # Extract date and time
-                        date_elem = container.find('time', class_='einsatz-datum')
-                        if not date_elem:
-                            continue
-
-                        date_str = date_elem.get('datetime') or date_elem.text.strip()
-                        try:
-                            date = datetime.strptime(date_str, '%Y-%m-%d %H:%M')
-                        except ValueError:
-                            try:
-                                date = datetime.strptime(date_str, '%d.%m.%Y %H:%M')
-                            except ValueError:
-                                continue
-
-                        # Extract title/type
-                        title_elem = container.find('h2', class_='einsatz-titel')
-                        einsatzart = title_elem.text.strip() if title_elem else "Unbekannt"
-
-                        # Extract location
-                        location_elem = container.find('div', class_='einsatz-ort')
-                        ort = location_elem.text.strip() if location_elem else "Unbekannt"
-
-                        # Extract duration
-                        duration_elem = container.find('span', class_='einsatz-dauer')
-                        dauer = duration_elem.text.strip() if duration_elem else "Unbekannt"
-
-                        # Extract units involved
-                        units_elem = container.find('div', class_='einsatz-einheiten')
-                        beteiligte = []
-                        if units_elem:
-                            unit_items = units_elem.find_all('li')
-                            beteiligte = [unit.text.strip() for unit in unit_items]
-
-                        # Extract description
-                        content_elem = container.find('div', class_='einsatz-beschreibung')
-                        verlauf = content_elem.text.strip() if content_elem else ""
-
-                        # Create report
-                        report = Report.create(
-                            einsatzart=einsatzart,
-                            ort=ort,
-                            datum=date,
-                            dauer=dauer,
-                            beteiligte=beteiligte or ["Unbekannt"],
-                            verlauf=verlauf
-                        )
-                        reports.append(report)
-
-                    except Exception as e:
-                        self.logger.error(f"Error parsing report container: {str(e)}")
-                        continue
-
-            except Exception as e:
-                self.logger.error(f"Error scraping year {year}: {str(e)}")
+            if response.status_code != 200:
+                self.logger.error(f"Failed to retrieve {url}: {response.status_code}")
                 continue
 
-        self.logger.info(f"Total reports scraped: {len(reports)}")
-        return reports
+            soup = BeautifulSoup(response.text, 'html.parser')
+            table = soup.find('table', {'class': 'einsatzverwaltung-reportlist'})
+
+            if not table:
+                self.logger.warning(f"No table found for {year}.")
+                continue
+
+            link_elements = []
+            for row in table.find_all('tr', class_="report"):
+                #self.logger.info(f"Report: {row}")c
+                cell = row.find_all('td')[0]
+                link = cell.find('a')
+                if link and 'href' in link.attrs:
+                    link_elements.append(link['href'])
+
+            for link_url in link_elements:
+                #self.logger.info(f"Report URLs: {link_url}")
+                try:
+                    article = Article(link_url)
+                    article.download()
+                    article.parse()
+                    df = pd.concat([df, pd.DataFrame({"ReportText": [article.text]})], ignore_index=True)
+
+                except Exception as e:
+                    self.logger.exception(f"Failed to extract text from {link_url}: {e}")
+        return df

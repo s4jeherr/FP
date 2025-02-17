@@ -1,0 +1,48 @@
+{
+  "operationDetails": {
+    "operationID": "OP123456",
+    "operationName": "Hurricane Response",
+    "disasterType": "Hurricane",
+    "dateTime": "2024-02-10T14:30:00",
+    "duration": 48.5,
+    "location": "Miami, FL"
+  },
+  "resources": [
+    "Fire Trucks",
+    "Rescue Boats",
+    "Medical Supplies"
+  ],
+  "tasks": [
+    {
+      "name": "Evacuation",
+      "description": "Evacuated residents from flooded areas.",
+      "startTime": "2024-02-10T15:00:00",
+      "endTime": "2024-02-10T20:00:00",
+      "location": "Downtown Miami"
+    },
+    {
+      "name": "Medical Assistance",
+      "description": "Provided emergency medical aid to injured individuals.",
+      "startTime": "2024-02-10T16:30:00",
+      "endTime": "2024-02-10T22:00:00",
+      "location": "Miami General Hospital"
+    }
+  ],
+  "observations": {
+    "challenges": [
+      "Heavy flooding prevented access to certain areas.",
+      "Limited communication due to power outages."
+    ],
+    "successes": [
+      "Successfully evacuated 200+ residents.",
+      "No fatalities reported."
+    ]
+  },
+  "externalSupport": {
+    "agencies": [
+      "FEMA",
+      "National Guard",
+      "Red Cross"
+    ]
+  }
+}

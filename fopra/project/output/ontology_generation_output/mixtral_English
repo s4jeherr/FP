@@ -1,0 +1,28 @@
+1. Disaster Type: Flooding
+2. Location(s): Ahr Valley, Germany, specifically Rech, Vettelschoß, Dernau, Bad Neuenahr
+3. Date(s): July 16, 2021 to July 26, 2021
+4. Units involved: Fire services from Vettelschoß, St. Katharinen, Linz am Rhein, Leubsdorf, THW (Technical Relief Organization), Bundeswehr, Police, and rescue services from all over Germany.
+5. Incident Summary:
+The Ahr Valley in Germany experienced severe flooding in mid-July 2021. Numerous towns and communities were affected, with Rech being one of the hardest hit areas. Fire services, THW, Bundeswehr, Police, and rescue services from across Germany responded to provide aid. Units worked together to clear roadways, supply residents with water, pump out cellars, assess damage, and rescue individuals in need. Auxiliary workers set up helicopter landing pads for rescue and supply flights. The disaster resulted in significant property damage, with some houses being completely destroyed or swept away. Fortunately, there were no reported casualties in Rech.
+
+Based on the information provided, here is a proposed ontology for this disaster event:
+
+- **Disaster**: Flooding
+	+ **Location**: Ahr Valley, Germany
+		- *Towns affected*: Rech, Vettelschoß, Dernau, Bad Neuenahr
+	+ **Date**: July 16, 2021 to July 26, 2021
+	+ **Units involved**:
+		- Fire services from Vettelschoß, St. Katharinen, Linz am Rhein, Leubsdorf
+		- THW (Technical Relief Organization)
+		- Bundeswehr
+		- Police
+		- Rescue services from all over Germany
+	+ **Incident summary**:
+		- Clearing roadways and assessing damage
+		- Supplying residents with water and pumping out cellars
+		- Rescuing individuals in need
+		- Setting up helicopter landing pads for rescue and supply flights
+	+ **Property damage**: Significant, including destroyed or swept away houses
+	+ **Casualties**: None reported in Rech
+
+This ontology structure can help organize the information and make it easier to understand the sequence of events during this disaster.

@@ -15,7 +15,8 @@ def setup_logging():
     return logging.getLogger(__name__)
 
 def save_to_file(response, file_name, dir_name):
-    os.makedirs("output", exist_ok=True)
+    if not os.path.exists(dir_name):
+        os.makedirs(dir_name)
     with open(f"{dir_name}/{file_name}", "a") as f:
         f.write(response)
 

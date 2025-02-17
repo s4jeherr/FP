@@ -73,7 +73,7 @@ class CustomLLMService:
             self.logger.error(f"Failed to pull model {model}: {str(e)}")
             raise
 
-    def get_response(self, text: str, model: str) -> Dict:
+    def get_response(self, text, model):
         """get response from  Ollama"""
         try:
             self.pull_model(model)
@@ -92,18 +92,18 @@ class CustomLLMService:
     def remove_model(self, model):
         remove_command = f"OLLAMA_HOST=0.0.0.0:7000 /run/system-manager/sw/bin//ollama rm {model}"
         try:
-            print(f"Removing Ollama model: {model}...")
+            self.logger(f"Removing Ollama model: {model}...")
             stdin, stdout, stderr = self.ssh.exec_command(remove_command)
 
             # Capture the output for debugging or status updates
-            for line in stdout:
-                print(line.strip())
-            for line in stderr:
-                print(f"Error: {line.strip()}")
+            #for line in stdout:
+                #print(line.strip())
+            #for line in stderr:
+                #print(f"Error: {line.strip()}")
 
-            print(f"Model '{model}' removed successfully.")
+            self.logger(f"Model '{model}' removed successfully.")
         except Exception as e:
-            print(f"Failed to remove model '{model}': {e}")
+            self.logger(f"Failed to remove model '{model}': {e}")
 
     def close(self):
         """Close connections"""

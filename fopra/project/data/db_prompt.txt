@@ -1,0 +1,44 @@
+Revised Prompt:
+Analyze the provided report and generate a JSON summary that strictly adheres to the following schema:
+
+{
+  "operationDetails": {
+    "operationID": "string (unique identifier)",
+    "operationName": "string (name of operation)",
+    "disasterType": "string (type of disaster)",
+    "dateTime": "string (ISO 8601 UTC format, e.g., 2023-01-23T10:15:30Z)",
+    "duration": "number (in hours, optional)",
+    "location": "string (operation location)"
+  },
+  "resources": [
+    "string (list of resources used)"
+  ],
+  "tasks": [
+    {
+      "name": "string (task name)",
+      "description": "string (optional, brief task details)",
+      "startTime": "string (ISO 8601 UTC, optional)",
+      "endTime": "string (ISO 8601 UTC, optional)",
+      "location": "string (task location, optional)"
+    }
+  ],
+  "observations": {
+    "challenges": [
+      "string (list of challenges encountered)"
+    ],
+    "successes": [
+      "string (list of successful outcomes)"
+    ]
+  },
+  "externalSupport": {
+    "agencies": [
+      "string (list of supporting agencies, if applicable)"
+    ]
+  }
+}
+Instructions:
+1. Extract relevant details from the report and format them exactly as specified.
+2. Ensure all date and time values strictly follow the ISO 8601 UTC format (e.g., 2023-01-23T10:15:30Z).
+3. If a field is not present in the report, omit it from the output rather than including null or an empty string.
+4. Your response must be a valid JSON object with no additional text, explanation, or formatting artifacts.
+Report:

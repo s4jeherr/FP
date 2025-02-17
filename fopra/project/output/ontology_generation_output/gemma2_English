@@ -1,0 +1,52 @@
+## Ontology for Fire Department Operational Reports 
+
+This ontology captures key concepts and relationships found in operational reports from various fire departments, focusing on disaster relief efforts. 
+
+**1. Core Concepts:**
+
+* **Disaster:** A catastrophic event requiring emergency response (e.g., flooding, earthquake).
+    * **Subtype:** Specific types of disasters (flood, fire, earthquake, etc.)
+* **Incident:** A specific occurrence within a disaster requiring immediate attention. 
+    * **Attributes:** Location, time, severity level, type (rescue, damage control, medical aid)
+* **Agency:** Organization responsible for responding to the incident (e.g., Fire Department, THW, Police).
+    * **Role:** Specific function during the incident (e.g., rescue, logistics, communication)
+
+**2. Entities Involved:**
+
+* **Personnel:** Individuals involved in the response effort. 
+    * **Roles:** Firefighter, paramedic, engineer, dispatcher, volunteer.
+* **Equipment:** Tools and vehicles used for the response. 
+    * **Types:** Firetruck, ambulance, rescue boat, communication equipment.
+* **Affected Population:** Individuals impacted by the disaster.
+
+**3. Actions Performed:**
+
+* **Assessment:** Evaluating the situation's severity and needs.
+* **Rescue:** Saving lives or property from immediate danger.
+* **Damage Control:**  Limiting further damage to structures and infrastructure. 
+    * **Sub-actions:** Pumping out water, securing unstable buildings, extinguishing fires.
+* **Medical Aid:** Providing first aid and transporting injured individuals.
+* **Logistics:** Coordinating supplies, transportation, and communication.
+
+**4. Supporting Infrastructure:**
+
+* **Communication Systems:** Radios, mobile phones, internet for information sharing. 
+* **Supply Chains:** Networks for delivering food, water, medical supplies, and equipment.
+* **Shelter Locations:** Temporary housing provided for displaced individuals.
+
+
+**5. Relationships:**
+
+* **Agent-Incident:** An agency responds to a specific incident.
+* **Personnel-Role:**  A person fulfills a specific role within an agency.
+* **Equipment-Action:** Equipment is used to perform specific actions during the response.
+* **Agency-Support:** Agencies collaborate and provide support to each other.
+
+**6. Temporal Aspects:**
+
+* **Timeline:** Sequence of events during the disaster and response effort.
+* **Duration:** Length of time an agency or individual is involved in the operation. 
+
+
+
+This ontology can be further developed by adding more specific terms related to different types of disasters, geographical locations, and legal frameworks governing emergency response. This will allow for more precise analysis and understanding of fire department operational reports.
