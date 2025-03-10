@@ -15,16 +15,14 @@ class Task(BaseModel):
         if value is None:
             return value
         try:
-            # Validate format but return the original string, not a datetime object
-            from datetime import datetime
             datetime.fromisoformat(value.replace("Z", "+00:00"))
-            return value  # Return as string, not as datetime object
+            return value
         except ValueError:
             raise ValueError(f"Invalid ISO 8601 datetime format: {value}")
 
 class Observation(BaseModel):
-    challenges: List[str] = Field(default_factory=list, description="Challenges encountered during the operation.")
-    successes: List[str] = Field(default_factory=list, description="Successes achieved during the operation.")
+    challenges: Optional[List[str]] = Field(default_factory=list, description="Challenges encountered during the operation.")
+    successes: Optional[List[str]] = Field(default_factory=list, description="Successes achieved during the operation.")
 
 class ExternalSupport(BaseModel):
     agencies: List[str] = Field(default_factory=list, description="Agencies providing external support.")
@@ -50,5 +48,5 @@ class Report(BaseModel):
     operationDetails: OperationDetails
     resources: List[str] = Field(default_factory=list, description="Resources such as vehicles or equipment used in the operation.")
     tasks: List[Task] = Field(default_factory=list, description="Tasks carried out during the operation.")
-    observations: Observation
-    externalSupport: ExternalSupport
+    observations: Optional[Observation] = Field(None, description="Observations made during the operation.")
+    externalSupport: Optional[ExternalSupport] = Field(None, description="External support received during the operation.")

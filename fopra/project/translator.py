@@ -39,8 +39,8 @@ if __name__ == "__main__":
     logger.info("Running Translate...")
 
     # Set the input and output directories
-    input_directory = "reports"
-    output_directory = "reports_translated"
+    input_directory = "trial"
+    output_directory = "trial_translated"
 
     # Create the output directory if it doesn't exist
     os.makedirs(output_directory, exist_ok=True)

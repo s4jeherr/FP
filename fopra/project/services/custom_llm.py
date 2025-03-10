@@ -63,36 +63,65 @@ class CustomLLMService:
                 time.sleep(5)
         return False
 
-    def pull_model(self, model):
-        """Pull an Ollama model"""
+    def pull_model(self, model, timeout=600):
+        """Pull an Ollama model and wait until it's available."""
         try:
             pull_command = f"OLLAMA_HOST=0.0.0.0:7000 /run/system-manager/sw/bin/ollama pull {model}"
-            self.ssh.exec_command(pull_command)
-            self.logger.info(f"Pulled model: {model}")
+            self.logger.info(f"Pulling model: {model}...")
+            stdin, stdout, stderr = self.ssh.exec_command(pull_command)
+
+            #Capture the output for debugging or status updates
+            #for line in stdout:
+                #print(line.strip())
+            #for line in stderr:
+                #print(f"Error: {line.strip()}")
+            # Wait for the model to be available
+            start_time = time.time()
+            while time.time() - start_time < timeout:
+                if self.is_available(model):
+                    return True
+                time.sleep(5)
+            raise TimeoutError(f"Timeout: Model '{model}' was not available after {timeout} seconds.")
+
         except Exception as e:
             self.logger.error(f"Failed to pull model {model}: {str(e)}")
             raise
 
+
     def get_response(self, text, model):
         """get response from  Ollama"""
         try:
-            self.pull_model(model)
+            #fix: check if model needs to be pulled first
+            if not self.is_available(model):
+                self.logger.info("{model} not available, init pull...")
+                self.pull_model(model)
 
+            self.logger.info("getting LLM response...")
             response = self.client.chat(model=model, messages=[{
                 'role': 'user',
                 'content': text
             }])
-
             return response['message']['content']
 
         except Exception as e:
             self.logger.error(f"LLM analysis failed: {str(e)}")
             raise
 
+    def is_available(self, model):
+        check_command = f"OLLAMA_HOST=0.0.0.0:7000 /run/system-manager/sw/bin/ollama show {model}"
+        stdin, stdout, stderr = self.ssh.exec_command(check_command)
+        output = stdout.read().decode().strip()
+
+        if 'architecture' in output:
+            self.logger.info(f"Model '{model}' is available.")
+            return True
+        else:
+            return False
+
     def remove_model(self, model):
         remove_command = f"OLLAMA_HOST=0.0.0.0:7000 /run/system-manager/sw/bin//ollama rm {model}"
         try:
-            self.logger(f"Removing Ollama model: {model}...")
+            self.logger.info(f"Removing Ollama model: {model}...")
             stdin, stdout, stderr = self.ssh.exec_command(remove_command)
 
             # Capture the output for debugging or status updates
@@ -101,9 +130,9 @@ class CustomLLMService:
             #for line in stderr:
                 #print(f"Error: {line.strip()}")
 
-            self.logger(f"Model '{model}' removed successfully.")
+            self.logger.info(f"Model '{model}' removed successfully.")
         except Exception as e:
-            self.logger(f"Failed to remove model '{model}': {e}")
+            self.logger.error(f"Failed to remove model '{model}': {e}")
 
     def close(self):
         """Close connections"""

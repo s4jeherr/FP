@@ -24,18 +24,6 @@ class Neo4jService:
         setup_queries = [
             """
             CREATE CONSTRAINT IF NOT EXISTS FOR (o:Operation) REQUIRE o.id IS UNIQUE;
-            """,
-            """
-            CREATE CONSTRAINT IF NOT EXISTS FOR (t:Task) REQUIRE t.name IS UNIQUE;
-            """,
-            """
-            CREATE CONSTRAINT IF NOT EXISTS FOR (l:Location) REQUIRE l.name IS UNIQUE;
-            """,
-            """
-            CREATE CONSTRAINT IF NOT EXISTS FOR (a:Agency) REQUIRE a.name IS UNIQUE;
-            """,
-            """
-            CREATE CONSTRAINT IF NOT EXISTS FOR (r:Resource) REQUIRE r.name IS UNIQUE;
             """
         ]
 
@@ -55,25 +43,44 @@ class Neo4jService:
             "operationName": report.operationDetails.operationName,
             "disasterType": report.operationDetails.disasterType,
             "location": report.operationDetails.location,
-            "dateTime": report.operationDetails.dateTime,  # Already a string
+            "dateTime": report.operationDetails.dateTime,
             "duration": report.operationDetails.duration,
             "resources": report.resources,
             "tasks": [
                 {
                     "name": task.name,
                     "description": task.description,
-                    "startTime": task.startTime,  # Already a string
-                    "endTime": task.endTime,  # Already a string
+                    "startTime": task.startTime,
+                    "endTime": task.endTime,
                     "location": task.location if task.location else None,
                 }
                 for task in report.tasks
-            ],
-            "observations": {
-                "challenges": report.observations.challenges,
-                "successes": report.observations.successes,
-            },
-            "externalSupport": {"agencies": report.externalSupport.agencies}
+            ]
         }
+
+        # Handle observations (partial, full, or missing)
+        if hasattr(report, "observations") and report.observations:
+            operation_data["observations"] = {
+                "challenges": report.observations.challenges if report.observations.challenges else [],
+                "successes": report.observations.successes if report.observations.successes else [],
+            }
+        else:
+            operation_data["observations"] = {
+                "challenges": [],
+                "successes": [],
+            }
+
+        # Handle external support (partial or missing)
+        if hasattr(report, "externalSupport") and report.externalSupport:
+            operation_data["externalSupport"] = {
+                "agencies": report.externalSupport.agencies if report.externalSupport.agencies else []
+            }
+        else:
+            operation_data["externalSupport"] = {
+                "agencies": []
+            }
+
+
 
         query = """
         MERGE (o:Operation {id: $operationID})

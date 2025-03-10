@@ -1,0 +1,35 @@
+{
+  "operationDetails": {
+    "operationID": "",
+    "operationName": "",
+    "disasterType": "",
+    "dateTime": "",
+    "duration": ,
+    "location": ""
+  },
+  "resources": [
+    ""
+  ],
+  "tasks": [
+    {
+      "name": "",
+      "description": "",
+      "startTime": "",
+      "endTime": "",
+      "location": ""
+    },
+  ],
+  "observations": {
+    "challenges": [
+      ""
+    ],
+    "successes": [  
+      ""
+    ]
+  },
+  "externalSupport": {
+    "agencies": [
+      ""
+    ]
+  }
+}

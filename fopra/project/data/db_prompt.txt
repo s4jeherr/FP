@@ -1,4 +1,3 @@
-Revised Prompt:
 Analyze the provided report and generate a JSON summary that strictly adheres to the following schema:
 
 {
@@ -24,21 +23,24 @@ Analyze the provided report and generate a JSON summary that strictly adheres to
   ],
   "observations": {
     "challenges": [
-      "string (list of challenges encountered)"
+      "string (list of challenges encountered, optional)"
     ],
     "successes": [
-      "string (list of successful outcomes)"
+      "string (list of successful outcomes, optional)"
     ]
   },
   "externalSupport": {
     "agencies": [
-      "string (list of supporting agencies, if applicable)"
+      "string (list of supporting agencies, optional)"
     ]
   }
 }
 Instructions:
 1. Extract relevant details from the report and format them exactly as specified.
 2. Ensure all date and time values strictly follow the ISO 8601 UTC format (e.g., 2023-01-23T10:15:30Z).
-3. If a field is not present in the report, omit it from the output rather than including null or an empty string.
-4. Your response must be a valid JSON object with no additional text, explanation, or formatting artifacts.
+3. The fields observations and external support are optional. If no information exists for these fields, leave them out entirely.
+4. Every Report requires and operationID. Use the date and operation name to create a unique identifier.
+5. Leave out any attributes where you cannot find values for. For example if a task has no clear start or endTime, leave out the attribute entirely instead of inputting an empty string (for example don't do "startTime": "").
+6. Every report should have at least one task, but can have multiple.
+7. Your response must be a valid JSON object with no additional text, explanation, or formatting artifacts. As such, the first character you output should always be an opening bracket '{' and the last character a closing bracket '}'.
 Report:

@@ -30,3 +30,15 @@ class Validator:
         except Exception as e:
             logger.error(f"Error during report validation: {str(e)}")
             return None
+
+def main():
+    input_file = "log_Oppenheim_Sondereinsatz.txt"
+
+    with open(input_file) as f:
+        file = f.read()
+
+    output = Validator.validate_report(file)
+
+
+if __name__ == "__main__":
+    main()

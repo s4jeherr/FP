@@ -22,17 +22,18 @@ def process_reports(neo4j_service, llm_client, instructions_dir, input_report_di
                 report_json = llm_client.get_response(build_prompt(instructions_dir, os.path.join(input_report_dir, input_report)), model)
                 validated_report = vr.validate_report(report_json)
 
-                output_dir = 'logs/json_generation/validated' if validated_report else 'logs/json_generation/notvalidated'
+                output_dir = 'trial_logs/validated' if validated_report else 'trial_logs/notvalidated'
 
                 if validated_report:
                     neo4j_service.store_report(validated_report)
                 else:
                     logger.error(f"Skipping {input_report} due to invalid report")
 
-                save_to_file(report_json, f'log_{input_report}_{int(time.time())}.txt', f'{output_dir}/{model}')
+                save_to_file(report_json, f'log_{input_report.removesuffix(".txt")}.txt', f'{output_dir}/{model}')
 
             except Exception as e:
                 logger.error(f"Error processing {input_report} with model {model}: {e}")
+                save_to_file(report_json, f'log_{input_report.removesuffix(".txt")}.txt', f'trial_logs/error/{model}')
 
         llm_client.remove_model(model)
 
@@ -70,8 +71,8 @@ def main():
     logger.info("Running Main...")
 
     instructions_dir = "data/db_prompt.txt"
-    input_report_dir = "data/ontology/prompt_reports"
-    models = ["mistral", "llama3.3", "mistral-nemo", "qwen2", "phi4"]
+    input_report_dir = "large_scale_events"
+    models = ["llama3.3"]
 
     neo4j_service, llm_client = initialize_services(logger)
 
