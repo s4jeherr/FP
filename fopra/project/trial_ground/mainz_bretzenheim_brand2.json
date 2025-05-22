@@ -1,0 +1,34 @@
+{
+    "operationDetails": {
+        "operationID": "MB_Brand_20241226",
+        "operationName": "Mainz-Bretzenheim High-Rise Smoke Report",
+        "disasterType": "False Alarm - Smoke Report",
+        "dateTime": "2024-12-26T15:24:00",
+        "duration": "Short response",
+        "location": "Mainz-Bretzenheim"
+    },
+    "resources": [
+        "MTF",
+        "ELW2"
+    ],
+    "tasks": [
+        {
+            "name": "Inspection",
+            "description": "Responded to high-rise smoke alarm, no issue found.",
+            "startTime": "15:24",
+            "endTime": "Shortly after",
+            "location": "Mainz-Bretzenheim"
+        }
+    ],
+    "observations": {
+        "challenges": [
+            "False alarm required resources allocation"
+        ],
+        "successes": [
+            "Rapid response and verification of no threat"
+        ]
+    },
+    "externalSupport": {
+        "agencies": []
+    }
+}

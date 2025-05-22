@@ -1,0 +1,34 @@
+{
+    "operationDetails": {
+        "operationID": "MB_Brand_20241021",
+        "operationName": "Mainz-Bretzenheim Smoke Report",
+        "disasterType": "Smoke Alarm",
+        "dateTime": "2024-10-21T21:00:00",
+        "duration": "Short response",
+        "location": "Student Dormitory, Mainz-Bretzenheim"
+    },
+    "resources": [
+        "HLF 20/16",
+        "LF 20 KatS"
+    ],
+    "tasks": [
+        {
+            "name": "Inspection",
+            "description": "Identifying source of smoke",
+            "startTime": "21:00",
+            "endTime": "Shortly after",
+            "location": "Student Dormitory"
+        }
+    ],
+    "observations": {
+        "challenges": [
+            "False alarm due to burnt food"
+        ],
+        "successes": [
+            "No fire detected, residents reassured"
+        ]
+    },
+    "externalSupport": {
+        "agencies": []
+    }
+}

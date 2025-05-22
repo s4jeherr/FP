@@ -1,0 +1,39 @@
+{
+    "operationDetails": {
+        "operationID": "KA_Brand_20240727",
+        "operationName": "Kaiserslautern Apartment Fire",
+        "disasterType": "Residential Fire",
+        "dateTime": "2024-07-27T16:00:00",
+        "duration": "Several hours",
+        "location": "Barbarossaring, Kaiserslautern"
+    },
+    "resources": [
+        "Fire Truck",
+        "Rescue Vehicle"
+    ],
+    "tasks": [
+        {
+            "name": "Fire Extinguishing",
+            "description": "Rescue operations and extinguishing fire",
+            "startTime": "16:00",
+            "endTime": "Several hours later",
+            "location": "Barbarossaring"
+        }
+    ],
+    "observations": {
+        "challenges": [
+            "Heavy smoke spread",
+            "Temporary housing required for displaced persons"
+        ],
+        "successes": [
+            "All residents safely evacuated"
+        ]
+    },
+    "externalSupport": {
+        "agencies": [
+            "Volunteer Firefighters",
+            "Police",
+            "Ambulance Services"
+        ]
+    }
+}

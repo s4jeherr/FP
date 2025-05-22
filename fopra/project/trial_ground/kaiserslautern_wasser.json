@@ -1,0 +1,39 @@
+{
+    "operationDetails": {
+        "operationID": "KA_Water_20240517",
+        "operationName": "Flood Response Kaiserslautern",
+        "disasterType": "Flood",
+        "dateTime": "2024-05-17T20:00:00",
+        "duration": "Several days",
+        "location": "Rheinland-Palatinate, Saarland, Baden-Württernberg"
+    },
+    "resources": [
+        "Water Pump Trucks",
+        "Fire Trucks"
+    ],
+    "tasks": [
+        {
+            "name": "Pumping Operations",
+            "description": "Evacuation and water removal",
+            "startTime": "May 17",
+            "endTime": "May 19",
+            "location": "Zweibrücken, Waldfischbach-Burgalben"
+        }
+    ],
+    "observations": {
+        "challenges": [
+            "Severe flooding",
+            "Hospital evacuation risk"
+        ],
+        "successes": [
+            "Prevented hospital evacuation"
+        ]
+    },
+    "externalSupport": {
+        "agencies": [
+            "THW Stuttgart",
+            "Fire Departments from Mainz, Ingelheim",
+            "Puma Media Unit"
+        ]
+    }
+}

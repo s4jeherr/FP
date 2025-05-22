@@ -1,0 +1,36 @@
+{
+    "operationDetails": {
+        "operationID": "KA_Brand_20240723",
+        "operationName": "Kaiserslautern Round Bales Fire",
+        "disasterType": "Fire",
+        "dateTime": "2024-07-23T06:00:00",
+        "duration": "Until 08:00",
+        "location": "Hinterer Rothenberg, Kaiserslautern"
+    },
+    "resources": [
+        "Fire Truck",
+        "Water Tanker"
+    ],
+    "tasks": [
+        {
+            "name": "Fire Containment",
+            "description": "Control burning of round bales",
+            "startTime": "06:00",
+            "endTime": "08:00",
+            "location": "Hinterer Rothenberg"
+        }
+    ],
+    "observations": {
+        "challenges": [
+            "Potential arson under investigation"
+        ],
+        "successes": [
+            "No injuries reported"
+        ]
+    },
+    "externalSupport": {
+        "agencies": [
+            "Volunteer Firefighters"
+        ]
+    }
+}

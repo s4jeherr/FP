@@ -1,0 +1,14 @@
+H2 Türöffnung dringend
+Datum: 12. März 2023 um 21:28 Uhr
+Alarmierungsart: FME, Sirene
+Dauer: 50 Minuten
+Einsatzart: Türöffnung
+Einsatzort: Gusterath
+Mannschaftsstärke: 9
+Fahrzeuge: MLF, TLF 16/24-Tr
+Weitere Kräfte: Rettungsdienst
+
+Einsatzbericht:
+Am Sonntagabend wurden wir zu einer dringenden Türöffnung nach Gusterath alarmiert.
+
+Wir öffneten die verschlossene Wohnungstür mittels Spezialwerkzeug. Der Patient wurde anschließend vom Rettungsdienst versorgt.

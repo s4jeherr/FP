@@ -1,0 +1,15 @@
+W1 flood
+Date: January 4, 2022 at 2:00 p.m.
+Type of alarm: FME
+Duration: 45 minutes
+Type of operation: severe weather
+Location: Gutweiler / Gusterath-Tal
+Vehicles: MZF 2
+Other forces: Gutweiler fire department, Korlingen fire department, Sommerau fire department
+
+Operation report:
+At noon we were alerted to Gusterath-Tal to support the Gutweiler, Korlingen and Sommerau fire departments.
+
+Due to the persistent rain, the level of the Ruwer rose so much that sandbags had to be laid as a precaution to protect neighboring residential buildings.
+
+With our multi-purpose vehicle we transported the required sandbags from our warehouse to the site.

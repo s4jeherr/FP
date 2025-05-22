@@ -1,0 +1,33 @@
+{
+    "operationDetails": {
+        "operationID": "OP_Water_20241123",
+        "operationName": "Oppenheim Water Rescue",
+        "disasterType": "Water Rescue",
+        "dateTime": "2024-11-23T17:20:00",
+        "duration": "Short operation",
+        "location": "Rhein, between Guntersblum and Gimbsheim"
+    },
+    "resources": [
+        "Rescue Boat"
+    ],
+    "tasks": [
+        {
+            "name": "Rescue Operation",
+            "description": "Rescue of person from water",
+            "startTime": "17:20",
+            "endTime": "Shortly after",
+            "location": "Rhein"
+        }
+    ],
+    "observations": {
+        "challenges": [
+            "Swift water conditions"
+        ],
+        "successes": [
+            "Person safely rescued"
+        ]
+    },
+    "externalSupport": {
+        "agencies": []
+    }
+}

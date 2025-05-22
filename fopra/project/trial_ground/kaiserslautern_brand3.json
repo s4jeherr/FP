@@ -1,0 +1,38 @@
+{
+    "operationDetails": {
+        "operationID": "KA_Brand_20250111",
+        "operationName": "Kaiserslautern Apartment Fire",
+        "disasterType": "Residential Fire",
+        "dateTime": "2025-01-11T19:00:00",
+        "duration": "Several hours",
+        "location": "Kapellenweg, Kaiserslautern"
+    },
+    "resources": [
+        "Fire Truck",
+        "Rescue Ladder",
+        "Ambulance"
+    ],
+    "tasks": [
+        {
+            "name": "Fire Extinguishing & Rescue",
+            "description": "Rescue of trapped resident and extinguishing fire.",
+            "startTime": "19:00",
+            "endTime": "Several hours later",
+            "location": "Kapellenweg, Kaiserslautern"
+        }
+    ],
+    "observations": {
+        "challenges": [
+            "Thick smoke blocked rescue entry"
+        ],
+        "successes": [
+            "Fire was contained and other residents remained unharmed"
+        ]
+    },
+    "externalSupport": {
+        "agencies": [
+            "Police",
+            "Ambulance Services"
+        ]
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "operationDetails": {
+        "operationID": "OP_Hazard_20240515",
+        "operationName": "Oppenheim Oil Spill",
+        "disasterType": "Hazardous Material Spill",
+        "dateTime": "2024-05-15T10:50:00",
+        "duration": "Short operation",
+        "location": "Oppenheim Vorstadt"
+    },
+    "resources": [
+        "Hazardous Material Response Unit"
+    ],
+    "tasks": [
+        {
+            "name": "Containment",
+            "description": "Stopping hydraulic oil spread",
+            "startTime": "10:50",
+            "endTime": "Shortly after",
+            "location": "Oppenheim Vorstadt"
+        }
+    ],
+    "observations": {
+        "challenges": [
+            "Risk of further leakage"
+        ],
+        "successes": [
+            "Oil spread successfully stopped"
+        ]
+    },
+    "externalSupport": {
+        "agencies": []
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "operationDetails": {
+        "operationID": "OP_Special_20240317",
+        "operationName": "Oppenheim Police Assistance",
+        "disasterType": "Law Enforcement Support",
+        "dateTime": "2024-03-17T04:46:00",
+        "duration": "1.5 hours",
+        "location": "Oppenheim"
+    },
+    "resources": [
+        "Turntable ladder",
+        "HLF"
+    ],
+    "tasks": [],
+    "observations": {
+        "challenges": [
+            "Operational coordination with police"
+        ],
+        "successes": [
+            "Support successfully provided"
+        ]
+    },
+    "externalSupport": {
+        "agencies": [
+            "Police"
+        ]
+    }
+}

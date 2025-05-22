@@ -1,0 +1,37 @@
+{
+    "operationDetails": {
+        "operationID": "KA_Tech_20240724",
+        "operationName": "Kaiserslautern Traffic Accident",
+        "disasterType": "Traffic Accident",
+        "dateTime": "2024-07-24T04:40:00",
+        "duration": "Until 12:00",
+        "location": "L367, Kaiserslautern"
+    },
+    "resources": [
+        "Fire Truck",
+        "Rescue Vehicle"
+    ],
+    "tasks": [
+        {
+            "name": "Rescue Operations",
+            "description": "Rescue of truck driver and securing accident site.",
+            "startTime": "04:40",
+            "endTime": "Ongoing until 12:00",
+            "location": "L367, Kaiserslautern"
+        }
+    ],
+    "observations": {
+        "challenges": [
+            "Truck recovery delayed road reopening"
+        ],
+        "successes": [
+            "Truck driver successfully rescued"
+        ]
+    },
+    "externalSupport": {
+        "agencies": [
+            "Volunteer Fire Departments Rodenbach, Siegelbach, Erfenbach",
+            "Accident Expert"
+        ]
+    }
+}

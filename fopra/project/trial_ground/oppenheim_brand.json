@@ -1,0 +1,38 @@
+{
+    "operationDetails": {
+        "operationID": "OP_Brand_20241027",
+        "operationName": "Oppenheim Chimney Fire",
+        "disasterType": "Fire",
+        "dateTime": "2024-10-27T20:39:00",
+        "duration": "Short response",
+        "location": "Oppenheim"
+    },
+    "resources": [
+        "HLF",
+        "Water tender",
+        "Fire fighting vehicle"
+    ],
+    "tasks": [
+        {
+            "name": "Inspection",
+            "description": "Inspection of chimney after smoke report",
+            "startTime": "20:39",
+            "endTime": "Shortly after",
+            "location": "Oppenheim"
+        }
+    ],
+    "observations": {
+        "challenges": [
+            "False alarm, minor smoke detected"
+        ],
+        "successes": [
+            "No injuries, property secured"
+        ]
+    },
+    "externalSupport": {
+        "agencies": [
+            "Fire Department Rhein-Selz",
+            "Police"
+        ]
+    }
+}

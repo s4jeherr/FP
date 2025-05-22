@@ -1,0 +1,25 @@
+{
+    "operationDetails": {
+        "operationID": "OP_Tech_20240310",
+        "operationName": "Oppenheim Door Opening",
+        "disasterType": "False Alarm",
+        "dateTime": "2024-03-10T18:43:00",
+        "duration": "Short response",
+        "location": "Oppenheim"
+    },
+    "resources": [
+        "Fire Department Oppenheim"
+    ],
+    "tasks": [],
+    "observations": {
+        "challenges": [
+            "Concerned residents reported incident"
+        ],
+        "successes": [
+            "No intervention required, person safe"
+        ]
+    },
+    "externalSupport": {
+        "agencies": []
+    }
+}

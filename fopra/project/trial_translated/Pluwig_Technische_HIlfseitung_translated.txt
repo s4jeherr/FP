@@ -1,0 +1,14 @@
+H2 door opening urgently
+Date: March 12, 2023 at 9:28 p.m.
+Alarming type: FME, siren
+Duration: 50 minutes
+Operating type: door opening
+Place of use: Gusterath
+Team strength: 9
+Vehicles: MLF, TLF 16/24-Tr.
+More forces: emergency services
+
+Operation report:
+On Sunday evening we were alerted to an urgent opening of the door in Gusterath.
+
+We opened the locked apartment door using a special tool. The patient was then cared for by the emergency services.

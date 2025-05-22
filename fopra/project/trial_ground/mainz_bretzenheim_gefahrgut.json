@@ -1,0 +1,34 @@
+{
+    "operationDetails": {
+        "operationID": "MB_Hazard_20240923",
+        "operationName": "Mainz-Bretzenheim Chemical Incident",
+        "disasterType": "Hazardous Material Incident",
+        "dateTime": "2024-09-23T18:04:00",
+        "duration": "Unknown",
+        "location": "Mainz-Gonsenheim"
+    },
+    "resources": [
+        "MTF",
+        "ELW2"
+    ],
+    "tasks": [
+        {
+            "name": "Support Operations",
+            "description": "Monitoring and containment of chemical reaction",
+            "startTime": "18:04",
+            "endTime": "Unknown",
+            "location": "Mainz-Gonsenheim"
+        }
+    ],
+    "observations": {
+        "challenges": [
+            "Chemical reaction with heat and smoke development"
+        ],
+        "successes": [
+            "No casualties reported"
+        ]
+    },
+    "externalSupport": {
+        "agencies": []
+    }
+}

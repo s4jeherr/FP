@@ -1,0 +1,34 @@
+{
+    "operationDetails": {
+        "operationID": "MB_Tech_20241223",
+        "operationName": "Mainz-Bretzenheim Traffic Accident",
+        "disasterType": "Traffic Accident",
+        "dateTime": "2024-12-23T09:02:00",
+        "duration": "Short response",
+        "location": "A60, Mainz-Bretzenheim"
+    },
+    "resources": [
+        "HLF 20/16",
+        "LF 20 KatS"
+    ],
+    "tasks": [
+        {
+            "name": "Safety Measures",
+            "description": "Fire safety and road cleaning",
+            "startTime": "09:02",
+            "endTime": "Shortly after",
+            "location": "A60"
+        }
+    ],
+    "observations": {
+        "challenges": [
+            "Traffic congestion due to accident"
+        ],
+        "successes": [
+            "Efficient response and site secured"
+        ]
+    },
+    "externalSupport": {
+        "agencies": []
+    }
+}
